@@ -15,7 +15,9 @@ export class ProfileComponent {
   private authService = inject(AuthGoogleService);
   private router = inject(Router);
 
-  profile = this.authService.profile;
+  get profile() {
+    return  this.authService.profile;
+  }
 
   get idToken(): string {
     return this.authService.getIDToken();

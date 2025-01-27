@@ -39,9 +39,10 @@ export class AuthGoogleService {
   }
 
   logout() {
-    this.oAuthService.revokeTokenAndLogout();
-    this.oAuthService.logOut();
-    this.profile.set(null);
+    this.oAuthService.revokeTokenAndLogout().then(() => {
+      this.oAuthService.logOut();
+      this.profile.set(null);
+    });
   }
 
   getIDToken(): string {
