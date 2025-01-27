@@ -1,0 +1,14 @@
+    <ng-container *ngIf="profile() as userProfile">
+        <div class="profile">
+            <h2>{{ userProfile.name }}</h2>
+            <p>Email: {{ userProfile.email }}</p>
+            <img [src]="userProfile.picture" alt="Profile Picture">
+
+            <a [href]="'https://oauth2.googleapis.com/tokeninfo?id_token=' + idToken" target="_blank">Server-side API</a>
+            <br>
+            <br>
+            <br>
+          
+            <button (click)="goDashboard()">Dashboard</button>
+        </div>
+    </ng-container>

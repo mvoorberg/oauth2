@@ -4,29 +4,24 @@ import { Router } from '@angular/router';
 import { AuthGoogleService } from '../services/auth-google.service';
 
 const MODULES = [CommonModule];
-
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-profile',
   standalone: true,
   imports: [MODULES],
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.scss',
 })
-export class DashboardComponent {
+export class ProfileComponent {
   private authService = inject(AuthGoogleService);
   private router = inject(Router);
 
-  getProfile() {
-    return this.authService.getProfile();
+  profile = this.authService.profile;
+
+  get idToken(): string {
+    return this.authService.getIDToken();
   }
 
-  logOut() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
+  goDashboard() {
+    this.router.navigate(['/dashboard']);
   }
-
-  goProfile() {
-    this.router.navigate(['/profile']);
-  }
-
 }
